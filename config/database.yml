@@ -20,12 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  host: postgres_db
 
 development:
   <<: *default
   database: sample_docker_integration_development
-  username: postgres
-  host: postgres_db
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: sample_docker_integration_production
-  username: sample_docker_integration
-  password: <%= ENV['SAMPLE_DOCKER_INTEGRATION_DATABASE_PASSWORD'] %>

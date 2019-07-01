@@ -1,5 +1,9 @@
 FROM ruby:2.6.3-stretch
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update
+RUN apt-get update -qq && apt-get install -y postgresql-client nodejs
 RUN mkdir /rails_devise_docker
 WORKDIR /rails_devise_docker
 COPY Gemfile /rails_devise_docker/Gemfile
